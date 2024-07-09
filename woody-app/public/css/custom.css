@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Maven+Pro:wght@400..900&display=swap');
+
+.f-1 {
+    font-family: "Inter";
+}
+
+.f-2 {
+    font-family: "Maven Pro";
+}
+
+.bg-1 {
+    background-color: #161616;
+}
+
+.txt-2 {
+    color: #D6A56E;
+}

@@ -1,11 +1,10 @@
-import Image from "next/image";
-
-export default function Home() {
+import Header from '@/components/Header';
+import Link from 'next/link';
+ 
+export default function Page() {
   return (
-    <main>
-      <div>
-        <h1 className="text-9xl"> TIRATOD +++++++</h1>
-      </div>
-    </main>
+    <>
+      <Header />
+    </>
   );
 }
