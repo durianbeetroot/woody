@@ -6,9 +6,9 @@ export default function Page(){
         <div className="bg-1">
             <Header />
             <Hero 
-                backgroundImage="/img/img1.png" 
-                text1="Professional Wood Furniture" 
-                text2="Woody has been a leading provider of wood furniture craftsmanship for many years. From custom-built pieces to beautifully crafted solid oak furniture, we have all your wood furniture needs covered. " 
+                backgroundImage="/img/img3.png" 
+                text1="Reviews" 
+                text2="Welcome to the Customer Reviews section of Woody-App. Here, you can read authentic feedback from our users. Their experiences and insights help us continuously improve and provide the best service possible. Explore what our customers have to say about Woody-App." 
             />
         </div>
     )
