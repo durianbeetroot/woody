@@ -1,5 +1,6 @@
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
+import Footer from '@/components/Footer';
 import Link from 'next/link';
 import {Col,Container,Row} from'react-bootstrap';
 
@@ -29,6 +30,9 @@ export default function Page(){
                     </Col>
                 </Row>
             </Container>
+            <Footer 
+                backgroundImage="/img/footer.jpg"
+            />
         </div>
     )
 }

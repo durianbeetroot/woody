@@ -1,5 +1,6 @@
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
+import Footer from '@/components/Footer'
 
 export default function Page(){
     return (
@@ -10,6 +11,10 @@ export default function Page(){
                 text1="Reviews" 
                 text2="Welcome to the Customer Reviews section of Woody-App. Here, you can read authentic feedback from our users. Their experiences and insights help us continuously improve and provide the best service possible. Explore what our customers have to say about Woody-App." 
             />
+            <Footer 
+                backgroundImage="img/footer.jpg"
+            />
         </div>
+
     )
 }
