@@ -2,9 +2,23 @@ import { Container,Row,Col,Table } from "react-bootstrap";
 
 export default function Page(){
 
+    const Sentiment = require('sentiment');
+    const sentiment = new Sentiment();
+
+    const analyzeSentiment = (statement) => {
+    const result = sentiment.analyze(statement);
+    if (result.score > 0) {
+        return 'Good';
+    } else if (result.score < 0) {
+        return 'Bad';
+    } else {
+        return 'Neutral';
+    }
+    };
+
     const reviews = [
-        { id: 1, name: 'Mark', title: 'Great', description: 'Nice Chair I love it' },
-        { id: 2, name: 'Jacob', title: 'Awesome', description: 'Wooden style really fits my inner room' },
+        { id: 1, name: 'Mark', title: 'Great', description: 'Nice Chair I love it', sentiment:null },
+        { id: 2, name: 'Jacob', title: 'Awesome', description: 'Wooden style is shit', sentiment:null },
       ];
 
     return (
@@ -14,13 +28,15 @@ export default function Page(){
             </Row>
             <Row className="pt-4">
                 <Col className="bg-white p-2 rounded-lg shadow-xl">
-                    <Table striped bordered hover>
+                    <Table striped bordered hover className="f-2">
                         <thead>
                             <tr>
                             <th>No</th>
                             <th>Name</th>
                             <th>Title</th>
                             <th>Description</th>
+                            <th>Sentiment</th>
+                            <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -30,6 +46,10 @@ export default function Page(){
                                 <td>{review.name}</td>
                                 <td>{review.title}</td>
                                 <td>{review.description}</td>
+                                <td>{analyzeSentiment(review.description)}</td>
+                                <td> 
+                                    <button className="btn btn-dark"> Classify </button>
+                                </td>
                             </tr>
                             ))}
                         </tbody>

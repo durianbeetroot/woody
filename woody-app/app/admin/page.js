@@ -43,7 +43,7 @@ export default function Page(){
                 <h1 className="f-2 font-semibold text-4xl txt-1 drop-shadow-md"> Dashboard </h1>
             </Row>
             <Row className="pt-4">
-                <Col md={4} className="bg-white p-2 rounded-lg shadow-xl">
+                <Col md={3} className="bg-white p-2 rounded-lg shadow-xl">
                     <h1 className="f-2 p-2 text-2xl drop-shadow-xl">Reviews Comparison (%)</h1>
                     <Doughnut data={data} options={options} />
                 </Col>
