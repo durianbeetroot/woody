@@ -28,13 +28,13 @@ export default function Footer({ backgroundImage }) {
                     </Row>
                     <Row className='pt-8'>
                         <Col md={4} className="flex flex=col justify-center">
-                            <Link href="/" className="text-s md:text-md f-1 no-underline text-white">Testos 123</Link>
+                            <Link href="/" className="text-s md:text-md f-1 no-underline text-white">Home</Link>
                         </Col>
                         <Col md={4} className="flex flex=col justify-center">
-                            <Link href="/" className="text-s md:text-md f-1 no-underline text-white">Testos 123</Link>
+                            <Link href="/" className="text-s md:text-md f-1 no-underline text-white">Products</Link>
                         </Col>
                         <Col md={4} className="flex flex=col justify-center">
-                            <Link href="/" className="text-s md:text-md f-1 no-underline text-white">Testos 123</Link>
+                            <Link href="/" className="text-s md:text-md f-1 no-underline text-white">Reviews</Link>
                         </Col>
                     </Row>
                     <Row className="pt-8">
