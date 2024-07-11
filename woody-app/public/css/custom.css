@@ -21,7 +21,8 @@
 }
 
 .txt-sidebar:hover {
-    background-color: #161616DD;
+    background-color: #FFFFFF;
+    color:#161616;
     border-radius: 5px;
 }
 
