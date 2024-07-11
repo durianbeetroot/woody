@@ -16,6 +16,15 @@
     color: #D6A56E;
 }
 
+.txt-sidebar {
+    color: #FFFFFF;
+}
+
+.txt-sidebar:hover {
+    background-color: #161616DD;
+    border-radius: 5px;
+}
+
 .btn-home-1 {
     background-color: transparent;
     border-color: #D6A56E;
@@ -31,3 +40,8 @@
     border-color: white;
     color: white;
 } 
+
+.bg-image {
+    background-size: cover;
+    background-position: center;
+}
