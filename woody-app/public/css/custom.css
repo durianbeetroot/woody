@@ -46,3 +46,21 @@
     background-size: cover;
     background-position: center;
 }
+
+.custom-pagination .page-item .page-link {
+    color: #D6A56E; /* Text color */
+    background-color: #000000; /* Background color */
+    border-color: #D6A56E; /* Border color */
+}
+
+.custom-pagination .page-item .page-link:hover {
+    color: #ffffff; /* Hover text color */
+    background-color: #D6A56E; /* Hover background color */
+    border-color: #ffffff; /* Hover border color */
+}
+
+.custom-pagination .page-item.active .page-link {
+    background-color: #D6A56E;
+    border-color: #D6A56E;
+    color: #ffffff;
+}
