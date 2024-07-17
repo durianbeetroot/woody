@@ -20,9 +20,6 @@ export default function Page(){
         {name:'test7', category: 'table', desc: 'test'},
         {name:'test8', category: 'table', desc: 'test'},
         {name:'test9', category: 'table', desc: 'test'},
-        {name:'test10', category: 'other', desc: 'test'},
-        {name:'test11', category: 'other', desc: 'test'},
-        {name:'test12', category: 'other', desc: 'test'},
     ]
 
     const [items, setItems] = useState(prodList);
@@ -84,7 +81,6 @@ export default function Page(){
                             <button className="f-1 font-semibold txt-2 hover:text-white duration-300" onClick={() => handleCategoryChange('all')}>All</button>
                             <button className="f-1 font-semibold txt-2 hover:text-white duration-300" onClick={() => handleCategoryChange('chair')}>Chairs</button>
                             <button className="f-1 font-semibold txt-2 hover:text-white duration-300" onClick={() => handleCategoryChange('table')}>Tables</button>
-                            <button className="f-1 font-semibold txt-2 hover:text-white duration-300" onClick={() => handleCategoryChange('other')}>Others</button>
                         </div>
                     </Col>
                 </Row>

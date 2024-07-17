@@ -12,6 +12,10 @@
     background-color: #161616;
 }
 
+.bg-3 {
+    background-color: #202020;
+}
+
 .txt-2 {
     color: #D6A56E;
 }
@@ -64,3 +68,25 @@
     border-color: #D6A56E;
     color: #ffffff;
 }
+
+.review-border {
+    border: 2px solid #D6A56E; /* Adjust the border color and thickness as needed */
+    border-radius: 1rem; /* Adjust the roundness as needed */
+    display: inline-block;
+}
+
+.btn-review {
+    background-color: #D6A56E;
+    border-color: #D6A56E;
+    color: #161616;
+    border-width: 2px;
+    border-radius: 0.5rem;
+    text-align: center;
+    text-decoration: none;
+} 
+
+.btn-review:hover {
+    background-color: transparent;
+    border-color: #D6A56E;
+    color: #D6A56E;
+} 
