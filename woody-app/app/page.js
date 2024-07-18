@@ -1,5 +1,6 @@
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
+import Footer from '@/components/Footer';
 import { Col, Container, Row } from 'react-bootstrap';
 import Link from 'next/link';
 
@@ -16,7 +17,7 @@ export default function Page() {
       <Container fluid className='pb-24'>
         <Row className='pt-24 px-16'>
           <Col md={7} className="flex flex-col justify-center">
-            <h1 className="f-2 text-6xl text-white font-semibold">
+            <h1 className="f-2 text-5xl sm:text-6xl text-white font-semibold">
               WE SPECIALIZE IN WOOD FURNITURE
             </h1>
             <h1 className="f-1 text-sm text-white mt-6 w-3/4">
@@ -43,7 +44,7 @@ export default function Page() {
               />
           </Col>
           <Col md={7} className="flex flex-col justify-center">
-            <h1 className="f-2 text-6xl text-white font-semibold">
+            <h1 className="f-2 text-5xl sm:text-6xl text-white font-semibold pt-4">
               CHAIR SUPPLIED AND ASSEMBLED
             </h1>
             <h1 className="f-1 text-sm text-white mt-6 w-3/4">
@@ -55,6 +56,7 @@ export default function Page() {
           </Col>
         </Row>
       </Container>
+      <Footer/>
     </div>
   );
 }

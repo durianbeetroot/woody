@@ -7,6 +7,7 @@ import {Col,Container,Row} from'react-bootstrap';
 import { useState } from 'react';
 import Pagination from 'react-bootstrap/Pagination';
 import { useEffect } from 'react';
+import Footer from '@/components/Footer';
 
 export default function Page(){
 
@@ -25,7 +26,7 @@ export default function Page(){
     const [items, setItems] = useState(prodList);
     const [activePage, setActivePage] = useState(1);
     const [category, setCategory] = useState('all');
-    const ITEMS_PER_PAGE = 6;
+    const ITEMS_PER_PAGE = 3;
 
     const totalPages = Math.ceil(
         (category === 'all' ? prodList : prodList.filter(item => item.category === category)).length / ITEMS_PER_PAGE
@@ -116,6 +117,7 @@ export default function Page(){
                     </Col>
                 </Row>
             </Container>
+            <Footer/>
         </div>
     )
 }
