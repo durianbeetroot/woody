@@ -73,14 +73,14 @@ export default function Page(){
             <Container fluid className='pb-24'>
                 <Row className='pt-24 px-16'>
                     <Col md={12}>
-                        <h1 className="f-2 text-6xl text-white font-semibold">
+                        <h1 className="f-2 text-3xl md:text-6xl text-white font-semibold">
                             CATEGORIES
                         </h1>
                     </Col>
                 </Row>
                 <Row className='pt-4 px-16'>
                     <Col md={12}>
-                        <div className="space-x-16">
+                        <div className="space-x-4 md:space-x-16">
                             <button className="f-1 font-semibold txt-2 hover:text-white duration-300" onClick={() => handleCategoryChange('all')}>All</button>
                             <button className="f-1 font-semibold txt-2 hover:text-white duration-300" onClick={() => handleCategoryChange('chair')}>Chairs</button>
                             <button className="f-1 font-semibold txt-2 hover:text-white duration-300" onClick={() => handleCategoryChange('table')}>Tables</button>
