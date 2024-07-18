@@ -86,8 +86,8 @@ export default function Page(){
                     </Col>
                 </Row>
                 <Row className='pt-4 px-16'>
-                    {items.map((item)=>(
-                    <Col md={4} className='pb-4'>
+                    {items.map((item, index)=>(
+                    <Col key={index} md={4} className='pb-4'>
                     <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white">
                     <div className="px-6 py-4">
                     <div className="font-bold text-xl mb-2">{item.name}</div>

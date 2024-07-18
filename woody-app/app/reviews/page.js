@@ -19,10 +19,10 @@ export default function Page(){
                             Quality Exceeded
                         </h1>
                         <h1 className="f-1 w-5/6 text-sm text-white text-center pt-12 mx-auto">
-                        I recently purchased a dining table from Woody-App, and I couldn't be happier with the quality and craftsmanship. The wood is beautiful and durable, and the design fits perfectly with my home's decor. The customer service was excellent, providing helpful advice and updates throughout the purchasing process. Delivery was on time and the table was easy to assemble. Woody-App exceeded my expectations and I recommend their furniture to anyone looking for stylish and high-quality pieces.
+                            I recently purchased a dining table from Woody-App, and I could not be happier with the quality and craftsmanship. The wood is beautiful and durable, and the design fits perfectly with my home decor. The customer service was excellent, providing helpful advice and updates throughout the purchasing process. Delivery was on time and the table was easy to assemble. Woody-App exceeded my expectations and I recommend their furniture to anyone looking for stylish and high-quality pieces.
                         </h1>
                         <h1 className="f-2 text-4xl text-white font-semibold text-center pt-16 mx-auto">
-                        Sylvia Silver, 2024
+                            Sylvia Silver, 2024
                         </h1>
                     </Col>
                 </Row>

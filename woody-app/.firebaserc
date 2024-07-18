@@ -1,5 +1,9 @@
 {
   "projects": {
-    "default": "customer-relationship-m"
-  }
+    "default": "woody-wood",
+    "woody": "woody-wood"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
 }

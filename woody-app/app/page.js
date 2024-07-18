@@ -21,7 +21,7 @@ export default function Page() {
               WE SPECIALIZE IN WOOD FURNITURE
             </h1>
             <h1 className="f-1 text-sm text-white mt-6 w-3/4">
-              We are very happy to provide quotes for any type of wood furniture craftsmanship, whether it's for indoor or outdoor projects. With many years of experience in the local area, we have hundreds of satisfied customers who love our work.
+              We are very happy to provide quotes for any type of wood furniture craftsmanship, whether it is for indoor or outdoor projects. With many years of experience in the local area, we have hundreds of satisfied customers who love our work.
             </h1>
             <Link href="/products" className="flex flex-col justify-center my-6 h-12 w-36 f-2 text-xl font-semibold btn-home-1 duration-300">
               PRODUCTS
