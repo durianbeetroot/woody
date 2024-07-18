@@ -1,0 +1,92 @@
+'use client'
+
+import { Container,Row,Col,Table } from "react-bootstrap";
+import { useState } from "react";
+import { Pagination } from "react-bootstrap";
+
+export default function Page(){
+
+    const reviews = [
+        { name: 'Chair A5', type: 'chair', description: 'Nice Chair' },
+        { name: 'Table 92', type: 'table', description: 'Table wooden' },
+        { name: 'Chair A5', type: 'chair', description: 'Nice Chair' },
+        { name: 'Table 92', type: 'table', description: 'Table wooden' },
+        { name: 'Chair A5', type: 'chair', description: 'Nice Chair' },
+        { name: 'Table 92', type: 'table', description: 'Table wooden' },
+        { name: 'Chair A5', type: 'chair', description: 'Nice Chair' },
+        { name: 'Table 92', type: 'table', description: 'Table wooden' },
+        { name: 'Chair A5', type: 'chair', description: 'Nice Chair' },
+        { name: 'Table 92', type: 'table', description: 'Table wooden' },
+        { name: 'Table 92', type: 'table', description: 'Table wooden' },
+        { name: 'Chair A5', type: 'chair', description: 'Nice Chair' },
+        { name: 'Table 92', type: 'table', description: 'Table wooden' },
+        { name: 'Chair A5', type: 'chair', description: 'Nice Chair' },
+        { name: 'Table 92', type: 'table', description: 'Table wooden' },
+        { name: 'Chair A5', type: 'chair', description: 'Nice Chair' },
+        { name: 'Table 92', type: 'table', description: 'Table wooden' },
+        { name: 'Chair A5', type: 'chair', description: 'Nice Chair' },
+      ];
+
+    const ITEMS_PER_PAGE = 10;
+    const [activePage, setActivePage] = useState(1);
+
+    const totalPages = Math.ceil(reviews.length / ITEMS_PER_PAGE);
+
+    const displayedReviews = reviews.slice(
+    (activePage - 1) * ITEMS_PER_PAGE,
+    activePage * ITEMS_PER_PAGE
+    );
+
+    const handlePageChange = (pageNumber) => {
+    setActivePage(pageNumber);
+    };
+
+    return (
+        <Container>
+            <Row className="pt-4">
+                <h1 className="f-2 font-semibold text-4xl txt-1 drop-shadow-md"> Products </h1>
+            </Row>
+            <Row className="pt-4">
+                <Col className="bg-white p-2 rounded-lg shadow-xl">
+                    <Table striped bordered hover className="f-2">
+                        <thead>
+                            <tr>
+                            <th>No</th>
+                            <th>Item Name</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {displayedReviews.map((review, index) => (
+                                <tr key={index}>
+                                <td>{(activePage - 1) * ITEMS_PER_PAGE + index + 1}</td>
+                                <td>{review.name}</td>
+                                <td>{review.type}</td>
+                                <td>{review.description}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </Table>
+                    <Pagination className="justify-content-center mt-4">
+                        <Pagination.Prev
+                        onClick={() => handlePageChange(activePage > 1 ? activePage - 1 : 1)}
+                        />
+                        {[...Array(totalPages)].map((_, index) => (
+                        <Pagination.Item
+                            key={index}
+                            active={index + 1 === activePage}
+                            onClick={() => handlePageChange(index + 1)}
+                        >
+                            {index + 1}
+                        </Pagination.Item>
+                        ))}
+                        <Pagination.Next
+                        onClick={() => handlePageChange(activePage < totalPages ? activePage + 1 : totalPages)}
+                        />
+                    </Pagination>
+                </Col>
+            </Row>
+        </Container>
+    )
+}

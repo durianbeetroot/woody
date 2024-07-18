@@ -34,6 +34,8 @@ export default function Page(){
 
     useEffect(() => {
         handleChange();
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [activePage, category]);
 
     const handleChange = () => {
