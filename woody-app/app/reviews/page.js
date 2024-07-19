@@ -7,7 +7,7 @@ import Footer from '@/components/Footer';
 import { useEffect, useState } from 'react';
 
 import { db } from '@/utils/firebaseConfig';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, getDocs, where, limit, orderBy, startAfter } from 'firebase/firestore';
 
 export default function Page(){
 
@@ -28,6 +28,30 @@ export default function Page(){
     const [name, setName] = useState('');
     const [title, setTitle] = useState('');
     const [desc, setDesc] = useState('');
+    const [review, setReview] = useState(null);
+
+    useEffect(() => {
+        const fetchRandomReview = async () => {
+          try {
+            const randomIndex = Math.random();
+
+            const querySnapshot = await getDocs(
+                collection(db, 'reviews'), 
+                where('sentiment','==','Good'),
+                limit(1)
+            )
+            
+            querySnapshot.forEach((doc) => {
+              setReview({ id: doc.id, ...doc.data() });
+            });
+    
+          } catch (error) {
+            console.error("Error fetching reviews: ", error);
+          }
+        };
+    
+        fetchRandomReview();
+      }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -61,13 +85,13 @@ export default function Page(){
                 <Row className='px-16'>
                     <Col md={12} className='review-border pt-8 pb-2'>
                         <h1 className="f-2 text-5xl txt-2 font-semibold text-center">
-                            Quality Exceeded
+                            {review ? review.title : null}
                         </h1>
                         <h1 className="f-1 w-5/6 text-sm text-white text-center pt-12 mx-auto">
-                            I recently purchased a dining table from Woody-App, and I could not be happier with the quality and craftsmanship. The wood is beautiful and durable, and the design fits perfectly with my home decor. The customer service was excellent, providing helpful advice and updates throughout the purchasing process. Delivery was on time and the table was easy to assemble. Woody-App exceeded my expectations and I recommend their furniture to anyone looking for stylish and high-quality pieces.
+                            {review ? review.description : null}
                         </h1>
                         <h1 className="f-2 text-4xl text-white font-semibold text-center pt-16 mx-auto">
-                            Sylvia Silver, 2024
+                            {review ? review.name : null}
                         </h1>
                     </Col>
                 </Row>

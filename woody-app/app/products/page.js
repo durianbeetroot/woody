@@ -2,26 +2,17 @@
 
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
-import Link from 'next/link';
 import {Col,Container,Row} from'react-bootstrap';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import Pagination from 'react-bootstrap/Pagination';
-import { useEffect } from 'react';
 import Footer from '@/components/Footer';
+
+import { db } from '@/utils/firebaseConfig';
+import { collection, getDocs } from 'firebase/firestore';
 
 export default function Page(){
 
-    const prodList = [
-        {name:'test1', category: 'chair', desc: 'test'},
-        {name:'test2', category: 'table', desc: 'test'},
-        {name:'test3', category: 'table', desc: 'test'},
-        {name:'test4', category: 'table', desc: 'test'},
-        {name:'test5', category: 'table', desc: 'test'},
-        {name:'test6', category: 'chair', desc: 'test'},
-        {name:'test7', category: 'table', desc: 'test'},
-        {name:'test8', category: 'table', desc: 'test'},
-        {name:'test9', category: 'table', desc: 'test'},
-    ]
+    const [prodList, setProdList] = useState([]);
 
     const [items, setItems] = useState(prodList);
     const [activePage, setActivePage] = useState(1);
@@ -29,20 +20,37 @@ export default function Page(){
     const ITEMS_PER_PAGE = 3;
 
     const totalPages = Math.ceil(
-        (category === 'all' ? prodList : prodList.filter(item => item.category === category)).length / ITEMS_PER_PAGE
+        (category === 'all' ? prodList : prodList.filter(item => item.type == category)).length / ITEMS_PER_PAGE
     );
 
     useEffect(() => {
-        handleChange();
 
+        const fetchProducts = async () => {
+            try {
+              
+              const querySnapshot = await getDocs(collection(db, 'products'));
+              const productList = [];
+      
+              querySnapshot.forEach((doc) => {
+                productList.push({ id: doc.id, ...doc.data() });
+              });
+      
+              setProdList(productList);
+            } catch (error) {
+              console.error("Error fetching products: ", error);
+            }
+          };
+        
+        fetchProducts();
+        handleChange();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [activePage, category]);
+    }, [activePage, category, prodList]);
 
     const handleChange = () => {
         let filteredList = prodList;
 
         if (category !== 'all') {
-        filteredList = prodList.filter(item => item.category === category);
+        filteredList = prodList.filter(item => item.type === category);
         }
 
         const displayedItems = filteredList.slice(
@@ -94,7 +102,7 @@ export default function Page(){
                     <div className="px-6 py-4">
                     <div className="font-bold text-xl mb-2">{item.name}</div>
                     <p className="text-gray-700 text-base">
-                        {item.desc}
+                        {item.description}
                     </p>
                     </div>
                     </div>
