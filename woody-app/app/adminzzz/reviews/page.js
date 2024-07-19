@@ -1,40 +1,33 @@
 'use client'
 
 import { Container,Row,Col,Table } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect,useState } from "react";
 import { Pagination } from "react-bootstrap";
+
+import { db } from '@/utils/firebaseConfig';
+import { collection, getDocs } from 'firebase/firestore';
+
 
 export default function Page(){
 
-    const Sentiment = require('sentiment');
-    const sentiment = new Sentiment();
+    const [reviews, setReviews] = useState([]);
 
-    const analyzeSentiment = (statement) => {
-    const result = sentiment.analyze(statement);
-    if (result.score > 0) {
-        return 'Good';
-    } else if (result.score < 0) {
-        return 'Bad';
-    } else {
-        return 'Neutral';
-    }
-    };
+    useEffect(() => {
+        const fetchReviews = async () => {
+            try {
+            const querySnapshot = await getDocs(collection(db, 'reviews'));
+            const reviewList = [];
+            querySnapshot.forEach((doc) => {
+                reviewList.push({ id: doc.id, ...doc.data() });
+            });
+            setReviews(reviewList);
+            } catch (error) {
+            console.error("Error fetching reviews: ", error);
+            }
+        };
 
-    const reviews = [
-        { name: 'Mark', title: 'Great', description: 'Nice Chair I love it', sentiment:null },
-        { name: 'Jacob', title: 'Awesome', description: 'Wooden style is shit', sentiment:null },
-        { name: 'Mark', title: 'Great', description: 'Nice Chair I love it', sentiment:null },
-        { name: 'Jacob', title: 'Awesome', description: 'Wooden style is shit', sentiment:null },
-        { name: 'Mark', title: 'Great', description: 'Nice Chair I love it', sentiment:null },
-        { name: 'Jacob', title: 'Awesome', description: 'Wooden style is shit', sentiment:null },
-        { name: 'Mark', title: 'Great', description: 'Nice Chair I love it', sentiment:null },
-        { name: 'Jacob', title: 'Awesome', description: 'Wooden style is shit', sentiment:null },
-        { name: 'Mark', title: 'Great', description: 'Nice Chair I love it', sentiment:null },
-        { name: 'Jacob', title: 'Awesome', description: 'Wooden style is shit', sentiment:null },
-        { name: 'Mark', title: 'Great', description: 'Nice Chair I love it', sentiment:null },
-        { name: 'Jacob', title: 'Awesome', description: 'Wooden style is shit', sentiment:null },
-        { name: 'Mark', title: 'Great', description: 'Nice Chair I love it', sentiment:null },
-      ];
+        fetchReviews();
+      }, []);
 
     const ITEMS_PER_PAGE = 10;
     const [activePage, setActivePage] = useState(1);
@@ -74,7 +67,7 @@ export default function Page(){
                                 <td>{review.name}</td>
                                 <td>{review.title}</td>
                                 <td>{review.description}</td>
-                                <td>{analyzeSentiment(review.description)}</td>
+                                <td>{review.sentiment}</td>
                             </tr>
                             ))}
                         </tbody>

@@ -1,31 +1,32 @@
 'use client'
 
 import { Container,Row,Col,Table } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect,useState } from "react";
 import { Pagination } from "react-bootstrap";
+
+import { db } from '@/utils/firebaseConfig';
+import { collection, getDocs } from 'firebase/firestore';
 
 export default function Page(){
 
-    const reviews = [
-        { name: 'Chair A5', type: 'chair', description: 'Nice Chair' },
-        { name: 'Table 92', type: 'table', description: 'Table wooden' },
-        { name: 'Chair A5', type: 'chair', description: 'Nice Chair' },
-        { name: 'Table 92', type: 'table', description: 'Table wooden' },
-        { name: 'Chair A5', type: 'chair', description: 'Nice Chair' },
-        { name: 'Table 92', type: 'table', description: 'Table wooden' },
-        { name: 'Chair A5', type: 'chair', description: 'Nice Chair' },
-        { name: 'Table 92', type: 'table', description: 'Table wooden' },
-        { name: 'Chair A5', type: 'chair', description: 'Nice Chair' },
-        { name: 'Table 92', type: 'table', description: 'Table wooden' },
-        { name: 'Table 92', type: 'table', description: 'Table wooden' },
-        { name: 'Chair A5', type: 'chair', description: 'Nice Chair' },
-        { name: 'Table 92', type: 'table', description: 'Table wooden' },
-        { name: 'Chair A5', type: 'chair', description: 'Nice Chair' },
-        { name: 'Table 92', type: 'table', description: 'Table wooden' },
-        { name: 'Chair A5', type: 'chair', description: 'Nice Chair' },
-        { name: 'Table 92', type: 'table', description: 'Table wooden' },
-        { name: 'Chair A5', type: 'chair', description: 'Nice Chair' },
-      ];
+    const [reviews, setReviews] = useState([]);
+
+    useEffect(() => {
+        const fetchReviews = async () => {
+            try {
+            const querySnapshot = await getDocs(collection(db, 'products'));
+            const reviewList = [];
+            querySnapshot.forEach((doc) => {
+                reviewList.push({ id: doc.id, ...doc.data() });
+            });
+            setReviews(reviewList);
+            } catch (error) {
+            console.error("Error fetching reviews: ", error);
+            }
+        };
+
+        fetchReviews();
+      }, []);
 
     const ITEMS_PER_PAGE = 10;
     const [activePage, setActivePage] = useState(1);

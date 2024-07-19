@@ -1,10 +1,36 @@
+'use client'
+
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import Footer from '@/components/Footer';
 import { Col, Container, Row } from 'react-bootstrap';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { db } from '../utils/firebaseConfig.js';
+import { collection, getDocs } from 'firebase/firestore';
 
 export default function Page() {
+
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'reviews'));
+        const reviewList = [];
+
+        querySnapshot.forEach((doc) => {
+          reviewList.push({ id: doc.id, ...doc.data() });
+        });
+        
+        setReviews(reviewList);
+      } catch (error) {
+        console.error("Error fetching reviews: ", error);
+      }
+    };
+
+    fetchReviews();
+  }, []);
 
   return (
     <div className='bg-1'>
@@ -14,6 +40,13 @@ export default function Page() {
           text1="Professional Wood Furniture" 
           text2="Woody has been a leading provider of wood furniture craftsmanship for many years. From custom-built pieces to beautifully crafted solid oak furniture, we have all your wood furniture needs covered. " 
         />
+      <ul>
+        {reviews.map((rev) => (
+          <li key={rev.id} className='text-white'>
+            {rev.name}
+          </li>
+        ))}
+      </ul>
       <Container fluid className='pb-24'>
         <Row className='pt-24 px-16'>
           <Col md={7} className="flex flex-col justify-center">
