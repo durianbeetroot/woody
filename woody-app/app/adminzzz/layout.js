@@ -7,10 +7,6 @@ import { useState } from 'react';
 
 const Layout = ({ children }) => {
 
-  // const [isNavOpen, setIsNavOpen] = useState(false);
-
-  // const toggleMenu = () => setIsNavOpen(!isNavOpen);
-
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {

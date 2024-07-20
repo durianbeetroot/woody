@@ -29,7 +29,7 @@ export default function Page(){
         fetchReviews();
       }, []);
 
-    const ITEMS_PER_PAGE = 10;
+    const ITEMS_PER_PAGE = 5;
     const [activePage, setActivePage] = useState(1);
 
     const totalPages = Math.ceil(reviews.length / ITEMS_PER_PAGE);
@@ -46,11 +46,11 @@ export default function Page(){
     return (
         <Container>
             <Row className="pt-4">
-                <h1 className="f-2 font-semibold text-4xl txt-1 drop-shadow-md"> Reviews </h1>
+                <h1 className="f-2 font-semibold text-3xl md:text-4xl txt-1 drop-shadow-md"> Reviews </h1>
             </Row>
             <Row className="pt-4">
-                <Col className="bg-white p-2 rounded-lg shadow-xl">
-                    <Table striped bordered hover className="f-2">
+                <Col className="bg-white p-2 rounded-lg shadow-xl overflow-x-auto">
+                    <Table striped bordered hover className="f-2 w-full min-w-max text-xs md:text-base">
                         <thead>
                             <tr>
                             <th>No</th>

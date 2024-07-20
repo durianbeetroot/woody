@@ -116,7 +116,7 @@ export default function Page(){
     return (
         <Container>
             <Row className="pt-4">
-                <h1 className="f-2 font-semibold text-4xl txt-1 drop-shadow-md"> Dashboard </h1>
+                <h1 className="f-2 font-semibold text-3xl md:text-4xl txt-1 drop-shadow-md"> Dashboard </h1>
             </Row>
             <Row className="pt-4">
                 <Col md={3} className="bg-white p-2 rounded-lg shadow-xl my-3 md:m-4">
