@@ -7,9 +7,15 @@ import { useState } from 'react';
 
 const Layout = ({ children }) => {
 
-  const [isNavOpen, setIsNavOpen] = useState(false);
+  // const [isNavOpen, setIsNavOpen] = useState(false);
 
-  const toggleMenu = () => setIsNavOpen(!isNavOpen);
+  // const toggleMenu = () => setIsNavOpen(!isNavOpen);
+
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
   return (
     <Container fluid>
@@ -26,26 +32,27 @@ const Layout = ({ children }) => {
                 <Link href="/adminzzz/reviews" className="f-2 py-1 text-sm no-underline txt-sidebar duration-300 w-full text-center">Reviews</Link>
             </div>
         </Col>
-        <nav className="bg-white shadow-md fixed top-0 left-0 w-full z-50 md:hidden">
-          <div className="flex items-center justify-between p-4">
-            <div className="flex items-center">
-              <Image src="/img/logo.png" alt="Logo" width={50} height={50} className="object-cover"/>
-              <span className="ml-2 text-xl font-bold">Your App</span>
-            </div>
-            <button
-              className="p-2 focus:outline-none"
-              onClick={toggleMenu}
-            >
-              <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-              </svg>
-            </button>
+        <nav className="top-0 left-0 right-0 py-4 px-8 md:px-16 bg-1 text-md font-semibold f-2 drop-shadow-2xl md:hidden"
+        style={{ backgroundImage: `url('/img/shade.png')` }}>
+          <div className="flex items-center justify-between">
+              <div>
+                  <Image src="/img/logo.png" alt="Logo" width={50} height={50} className="object-cover" />
+              </div>
+              <div className="md:hidden" onClick={toggleMenu}>
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+              </div>
           </div>
-          <div className={`bg-white shadow-md ${isNavOpen ? 'block' : 'hidden'}`}>
-            <Link href="/adminzzz" className='block py-2 px-4 text-center text-gray-700 hover:bg-gray-100'>
-              Dashboard
-            </Link>
-          </div>
+          {menuOpen && (
+          <div className="md:hidden">
+                <ul className="flex flex-col items-center mt-4 space-y-4">
+                  <Link href="/adminzzz" className="f-2 text-white no-underline hover:text-white duration-300">Home</Link>
+                  <Link href="/adminzzz/products" className="f-2 text-white no-underline hover:text-white duration-300">Products</Link>
+                  <Link href="/adminzzz/reviews" className="f-2 text-white no-underline hover:text-white duration-300">Reviews</Link>
+                </ul>
+              </div>
+            )}
         </nav>
         <Col md={11}
         style={{ 
