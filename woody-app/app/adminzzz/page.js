@@ -2,17 +2,18 @@
 
 import { Container,Row,Col } from "react-bootstrap";
 import React from 'react';
-import { Doughnut } from 'react-chartjs-2';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Doughnut,PolarArea } from 'react-chartjs-2';
+import { Chart as ChartJS, RadialLinearScale, ArcElement, Tooltip, Legend } from 'chart.js';
 import { useEffect,useState } from 'react';
 import { db } from "@/utils/firebaseConfig";
 import { collection,getDocs } from "@firebase/firestore";
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(RadialLinearScale,ArcElement, Tooltip, Legend);
 
 export default function Page(){
 
-  const [sentimentCounts, setSentimentCounts] = useState([0, 0, 0]); // [Good, Bad, Neutral]
+  const [sentimentCounts, setSentimentCounts] = useState([0, 0, 0]); 
+  const [itemCounts, setItemCounts] = useState([0, 0]);
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -41,14 +42,55 @@ export default function Page(){
     };
 
     fetchReviews();
+
+    const fetchProductionData = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'products'));
+        const itemCount = { chair: 0, table: 0 };
+
+        querySnapshot.forEach((doc) => {
+          const itemType = doc.data().type;
+          if (itemCount.hasOwnProperty(itemType)) {
+            itemCount[itemType]++;
+          }
+        });
+
+        // Convert the itemCount object to an array: [Chair, Table]
+        const countsArray = [
+          itemCount.chair || 0,
+          itemCount.table || 0
+        ];
+
+        setItemCounts(countsArray);
+      } catch (error) {
+        console.error("Error fetching production data: ", error);
+      }
+    };
+
+    fetchProductionData();
   }, []);
 
     const data = {
         labels: ['Positive', 'Negative', 'Neutral'],
         datasets: [
           {
-            label: '# of Votes',
+            label: 'Frequency',
             data: sentimentCounts,
+            backgroundColor: [
+                '#c0c0c0',
+                '#404040',
+                '#808080'
+              ]
+          },
+        ],
+      };
+
+      const data2 = {
+        labels: ['Chair','Tables'],
+        datasets: [
+          {
+            label: 'Frequency',
+            data: itemCounts,
             backgroundColor: [
                 '#c0c0c0',
                 '#404040',
@@ -77,9 +119,13 @@ export default function Page(){
                 <h1 className="f-2 font-semibold text-4xl txt-1 drop-shadow-md"> Dashboard </h1>
             </Row>
             <Row className="pt-4">
-                <Col md={3} className="bg-white p-2 rounded-lg shadow-xl">
-                    <h1 className="f-2 p-2 text-2xl drop-shadow-xl">Reviews Comparison (%)</h1>
-                    <Doughnut data={data} options={options} />
+                <Col md={3} className="bg-white p-2 rounded-lg shadow-xl m-4">
+                    <h1 className="f-2 p-2 text-2xl drop-shadow-xl">Reviews Comparison</h1>
+                    <PolarArea data={data} options={options} />
+                </Col>
+                <Col md={3} className="bg-white p-2 rounded-lg shadow-xl m-4">
+                    <h1 className="f-2 p-2 text-2xl drop-shadow-xl">Products Comparison</h1>
+                    <Doughnut data={data2} options={options} />
                 </Col>
             </Row>
         </Container>
