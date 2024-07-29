@@ -5,6 +5,9 @@ import { Container, Row, Col} from 'react-bootstrap';
 import Image from "next/image";
 import { useState } from 'react';
 
+import { Canvas } from '@react-three/fiber';
+import ThreeLoader from '@/components/ThreeLoader';
+
 const Layout = ({ children }) => {
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -22,6 +25,15 @@ const Layout = ({ children }) => {
                     boxShadow: '0 4px 16px rgba(0, 0, 0, 0.4)'
             }}>
              <div className="d-flex flex-column align-items-center pt-4 space-y-3 w-full">
+                <div className="relative w-full h-[10vh] flex items-start overflow-hidden">
+                  <div className="w-full h-full">
+                    <Canvas style={{ width: '100%', height: '20vh' }}>
+                      <ambientLight intensity={0.5} />
+                      <directionalLight position={[10, 10, 5]} intensity={1} />
+                      <ThreeLoader path="/models/cust.glb" />
+                    </Canvas>
+                  </div>
+                </div>
                 <Image src="/img/logo.png" alt="Logo" width={50} height={50} className="object-cover pb-4"/>
                 <Link href="/adminzzz" className="f-2 py-1 text-sm no-underline txt-sidebar duration-300 w-full text-center">Dashboard</Link>
                 <Link href="/adminzzz/products" className="f-2 py-1 text-sm no-underline txt-sidebar duration-300 w-full text-center">Products</Link>
@@ -34,6 +46,15 @@ const Layout = ({ children }) => {
               <div>
                   <Image src="/img/logo.png" alt="Logo" width={50} height={50} className="object-cover" />
               </div>
+              <div className="relative w-full h-[20vh] flex items-start overflow-hidden">
+                  <div className="w-full h-full">
+                    <Canvas style={{ width: '100%', height: '30vh' }}>
+                      <ambientLight intensity={0.5} />
+                      <directionalLight position={[10, 10, 5]} intensity={1} />
+                      <ThreeLoader path="/models/cust.glb" />
+                    </Canvas>
+                  </div>
+                </div>
               <div className="md:hidden" onClick={toggleMenu}>
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
