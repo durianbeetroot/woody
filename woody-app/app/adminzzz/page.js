@@ -68,7 +68,11 @@ export default function Page(){
     };
 
     fetchProductionData();
-  }, []);
+
+    if (itemCounts.every(count => count === 0) && sentimentCounts.every(count => count === 0)) {
+      dummyDataChange();
+    }
+  }, [itemCounts, sentimentCounts]);
 
     const data = {
         labels: ['Positive', 'Negative', 'Neutral'],
@@ -112,6 +116,11 @@ export default function Page(){
           },
         },
       };
+
+    const dummyDataChange = () =>{
+      setItemCounts([3,3]);
+      setSentimentCounts([6,3,5]);
+    };
 
     return (
         <Container>

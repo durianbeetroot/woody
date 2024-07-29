@@ -49,6 +49,10 @@ export default function Page(){
         
         fetchProducts();
         handleChange();
+
+        if (items.every(count => count === 0)) {
+            dummyDataChange();
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [activePage, category, prodList]);
 
@@ -148,9 +152,6 @@ export default function Page(){
                         </Pagination>
                     </Col>
                 </Row>
-                <div className='px-16 pt-2 flex justify-end'>
-                    <button className='f-2 p-2 px-4 text-2xl font-semibold btn-review duration-300' onClick={dummyDataChange}> Dummy Data </button>
-                </div>
             </Container>
             <Footer/>
         </div>

@@ -28,6 +28,10 @@ export default function Page(){
         };
 
         fetchReviews();
+
+        if (reviews.every(count => count === 0)) {
+            dummyDataChange();
+          }
       }, []);
 
     const ITEMS_PER_PAGE = 5;
@@ -95,9 +99,6 @@ export default function Page(){
                     </Pagination>
                 </Col>
             </Row>
-            <div className='px-16 pt-2 flex justify-end'>
-                <button className='f-2 p-2 px-4 text-2xl font-semibold btn-dum duration-300' onClick={dummyDataChange}> Dummy Data </button>
-            </div>
         </Container>
     )
 }
