@@ -7,6 +7,7 @@ import { Pagination } from "react-bootstrap";
 import { db } from '@/utils/firebaseConfig';
 import { collection, getDocs } from 'firebase/firestore';
 
+import dummyRev from "@/dummy/dummyReviews";
 
 export default function Page(){
 
@@ -27,6 +28,10 @@ export default function Page(){
         };
 
         fetchReviews();
+
+        if (reviews.every(count => count === 0)) {
+            dummyDataChange();
+          }
       }, []);
 
     const ITEMS_PER_PAGE = 5;
@@ -42,6 +47,12 @@ export default function Page(){
     const handlePageChange = (pageNumber) => {
     setActivePage(pageNumber);
     };
+
+    const dummyDataChange = () =>{
+        const dum = new dummyRev();
+        setReviews(dum.getData());
+    };
+
 
     return (
         <Container>

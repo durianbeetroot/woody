@@ -9,6 +9,8 @@ import { useEffect, useState } from 'react';
 import { db } from '@/utils/firebaseConfig';
 import { collection, addDoc, getDocs, where, limit, orderBy, startAfter } from 'firebase/firestore';
 
+import dummyRev from '@/dummy/dummyReviews';
+
 export default function Page(){
 
     const Sentiment = require('sentiment');
@@ -51,7 +53,11 @@ export default function Page(){
         };
     
         fetchRandomReview();
-      }, []);
+
+        if (review === null) {
+            dummyDataChange();
+          }
+      }, [review]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -72,6 +78,11 @@ export default function Page(){
           console.error("Error adding review: ", e);
         }
       };
+
+      const dummyDataChange = () =>{
+            const dum = new dummyRev();
+            setReview(dum.getData()[0]);
+        };
 
     return (
         <div className="bg-1">
