@@ -72,7 +72,7 @@ export default function Page() {
                 <Canvas style={{ width: '100%', height: '60vh' }}>
                   <ambientLight intensity={0.5} />
                   <directionalLight position={[10, 10, 5]} intensity={1} />
-                  <ThreeLoader path="/models/chair1.glb" />
+                  <ThreeLoader path="/models/table1.glb" />
                 </Canvas>
               </div>
             </div>
