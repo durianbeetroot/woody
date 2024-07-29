@@ -5,10 +5,9 @@ import Hero from '@/components/Hero';
 import Footer from '@/components/Footer';
 import { Col, Container, Row } from 'react-bootstrap';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { db } from '../utils/firebaseConfig.js';
-import { collection, getDocs } from 'firebase/firestore';
 import ThreeChair from '@/components/ThreeChair.js';
+import { Canvas } from '@react-three/fiber';
+import ThreeLoader from '@/components/ThreeLoader';
 
 export default function Page() {
   const modelPath = '/models/test.glb';
@@ -32,9 +31,13 @@ export default function Page() {
             <Link href="/products" className="flex flex-col justify-center my-6 h-12 w-36 f-2 text-xl font-semibold btn-home-1 duration-300">
               PRODUCTS
             </Link>
-            <div className="relative w-full h-[30vh] flex items-start overflow-hidden py-4">
+            <div className="relative w-full h-[40vh] flex items-start overflow-hidden py-4">
               <div className="w-full md:w-1/6 h-full">
-                <ThreeChair />
+                <Canvas style={{ width: '100%', height: '40vh' }}>
+                  <ambientLight intensity={0.5} />
+                  <directionalLight position={[10, 10, 5]} intensity={1} />
+                  <ThreeLoader path="/models/chair1.glb" />
+                </Canvas>
               </div>
             </div>
           </Col>
@@ -64,9 +67,13 @@ export default function Page() {
             <Link href="/reviews" className="flex flex-col justify-center my-6 h-12 w-36 f-2 text-xl font-semibold btn-home-1 duration-300">
               REVIEWS
             </Link>
-            <div className="relative w-full h-[30vh] flex items-start overflow-hidden py-4">
+            <div className="relative w-full h-[40vh] flex items-start overflow-hidden py-4">
               <div className="w-full md:w-1/6 h-full">
-                <ThreeChair />
+                <Canvas style={{ width: '100%', height: '40vh' }}>
+                  <ambientLight intensity={0.5} />
+                  <directionalLight position={[10, 10, 5]} intensity={1} />
+                  <ThreeLoader path="/models/chair1.glb" />
+                </Canvas>
               </div>
             </div>
           </Col>
