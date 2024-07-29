@@ -17,6 +17,7 @@ const ThreeLoader = ({ path }) => {
       (gltf) => {
         group.current.add(gltf.scene);
 
+        camera.position.z = 5;
         
       },
       undefined,

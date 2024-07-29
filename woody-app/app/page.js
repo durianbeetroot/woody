@@ -31,9 +31,9 @@ export default function Page() {
             <Link href="/products" className="flex flex-col justify-center my-6 h-12 w-36 f-2 text-xl font-semibold btn-home-1 duration-300">
               PRODUCTS
             </Link>
-            <div className="relative w-full h-[40vh] flex items-start overflow-hidden py-4">
+            <div className="relative w-full h-[50vh] flex items-start overflow-hidden py-4">
               <div className="w-full md:w-1/6 h-full">
-                <Canvas style={{ width: '100%', height: '40vh' }}>
+                <Canvas style={{ width: '100%', height: '60vh' }}>
                   <ambientLight intensity={0.5} />
                   <directionalLight position={[10, 10, 5]} intensity={1} />
                   <ThreeLoader path="/models/chair1.glb" />
@@ -67,9 +67,9 @@ export default function Page() {
             <Link href="/reviews" className="flex flex-col justify-center my-6 h-12 w-36 f-2 text-xl font-semibold btn-home-1 duration-300">
               REVIEWS
             </Link>
-            <div className="relative w-full h-[40vh] flex items-start overflow-hidden py-4">
+            <div className="relative w-full h-[50vh] flex items-start overflow-hidden py-4">
               <div className="w-full md:w-1/6 h-full">
-                <Canvas style={{ width: '100%', height: '40vh' }}>
+                <Canvas style={{ width: '100%', height: '60vh' }}>
                   <ambientLight intensity={0.5} />
                   <directionalLight position={[10, 10, 5]} intensity={1} />
                   <ThreeLoader path="/models/chair1.glb" />
