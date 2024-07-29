@@ -10,6 +10,11 @@ import Footer from '@/components/Footer';
 import { db } from '@/utils/firebaseConfig';
 import { collection, getDocs } from 'firebase/firestore';
 
+import { Canvas } from '@react-three/fiber';
+import ThreeLoader from '@/components/ThreeLoader';
+
+import dummyProd from '@/dummy/dummyProducts';
+
 export default function Page(){
 
     const [prodList, setProdList] = useState([]);
@@ -17,6 +22,7 @@ export default function Page(){
     const [items, setItems] = useState(prodList);
     const [activePage, setActivePage] = useState(1);
     const [category, setCategory] = useState('all');
+    const [modelKey, setModelKey] = useState(Date.now());
     const ITEMS_PER_PAGE = 3;
 
     const totalPages = Math.ceil(
@@ -59,6 +65,7 @@ export default function Page(){
         );
 
         setItems(displayedItems);
+        setModelKey(Date.now());
     };
 
     const handlePageChange = (pageNumber) => {
@@ -68,6 +75,11 @@ export default function Page(){
     const handleCategoryChange = (category) => {
         setCategory(category);
         setActivePage(1);
+    };
+
+    const dummyDataChange = () =>{
+        const dum = new dummyProd();
+        setProdList(dum.getData());
     };
 
     return (
@@ -99,12 +111,22 @@ export default function Page(){
                     {items.map((item, index)=>(
                     <Col key={index} md={4} className='pb-4'>
                     <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white">
-                    <div className="px-6 py-4">
-                    <div className="font-bold text-xl mb-2">{item.name}</div>
-                    <p className="text-gray-700 text-base">
-                        {item.description}
-                    </p>
-                    </div>
+                        <div className="px-6 py-4">
+                            <div className="relative w-full h-[25vh] flex items-start overflow-hidden">
+                                <div className="w-full h-full">
+                                    <Canvas key={modelKey} style={{ width: '100%', height: '40vh' }}>
+                                    <ambientLight intensity={0.5} />
+                                    <directionalLight position={[10, 10, 5]} intensity={1} />
+                                    <ThreeLoader path={`/models/${item.type}1.glb`} />
+                                    {/* {item.type === 'chair'? <ThreeLoader path="/models/chair1.glb" /> : <ThreeLoader path="/models/table1.glb" />} */}
+                                    </Canvas>
+                                </div>
+                            </div>
+                            <div className="font-bold text-xl mb-2">{item.name}</div>
+                                <p className="text-gray-700 text-base">
+                                    {item.description}
+                                </p>
+                        </div>
                     </div>
                     </Col>
                     ))}
@@ -126,6 +148,9 @@ export default function Page(){
                         </Pagination>
                     </Col>
                 </Row>
+                <div className='px-16 pt-2 flex justify-end'>
+                    <button className='f-2 p-2 px-4 text-2xl font-semibold btn-review duration-300' onClick={dummyDataChange}> Dummy Data </button>
+                </div>
             </Container>
             <Footer/>
         </div>
