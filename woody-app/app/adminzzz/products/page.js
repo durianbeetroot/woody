@@ -7,6 +7,8 @@ import { Pagination } from "react-bootstrap";
 import { db } from '@/utils/firebaseConfig';
 import { collection, getDocs } from 'firebase/firestore';
 
+import dummyProd from '@/dummy/dummyProducts';
+
 export default function Page(){
 
     const [reviews, setReviews] = useState([]);
@@ -40,6 +42,11 @@ export default function Page(){
 
     const handlePageChange = (pageNumber) => {
     setActivePage(pageNumber);
+    };
+
+    const dummyDataChange = () =>{
+        const dum = new dummyProd();
+        setReviews(dum.getData());
     };
 
     return (
@@ -88,6 +95,9 @@ export default function Page(){
                     </Pagination>
                 </Col>
             </Row>
+            <div className='px-16 pt-2 flex justify-end'>
+                <button className='f-2 p-2 px-4 text-2xl font-semibold btn-dum duration-300' onClick={dummyDataChange}> Dummy Data </button>
+            </div>
         </Container>
     )
 }

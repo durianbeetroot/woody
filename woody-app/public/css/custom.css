@@ -94,3 +94,19 @@
     border-color: #D6A56E;
     color: #D6A56E;
 } 
+
+.btn-dum {
+    background-color: #ffffff00;
+    border-color: #161616;
+    color: #161616;
+    border-width: 2px;
+    border-radius: 0.5rem;
+    text-align: center;
+    text-decoration: none;
+} 
+
+.btn-dum:hover {
+    background-color: transparent;
+    border-color: #646464;
+    color: #636363;
+} 
